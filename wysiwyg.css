@@ -1,18 +1,40 @@
+body {
+	background-color: #FCFCFC;
+}
+
 #people-container {
-	border: 2px solid black;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .personCard {
-	border: 2px solid black;
+	position: relative;
+	justify-content: center;
+	border: 2px solid lightgrey;
+	box-shadow: 2px 2px black;
+	border-radius: 5px;
 	margin: 10px;
 	padding: 10px;
-	width: 500px;
+	width: 300px;
 	height: auto;
 }
 
 img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 10px;
 	width: 200px;
 	height: 300px;
+	border: 2px solid lightgrey;
+}
+
+.bio {
+	padding: 10px;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
 }
 
 .yellow {
@@ -20,5 +42,9 @@ img {
 }
 
 .blue {
-	background-color: blue;
+	background-color: lightblue;
+}
+
+.dotted {
+	border: 2px dotted blue;
 }

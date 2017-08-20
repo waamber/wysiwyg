@@ -42,35 +42,47 @@ var famousPeople = [
 ];
 
 var peopleContainer = document.getElementById('people-container');
+var textInput = document.getElementById('textInput');
 	
 for(var i = 0; i < famousPeople.length; i++) {
 	var currentPerson = famousPeople[i];
 	var newPerson = `<div class="personCard">
-			              <header>${currentPerson.name}</header>
+			              <h1>${currentPerson.name}</h1>
                     <h3>${currentPerson.title}</h3>
                     <div><img src="${currentPerson.image}"></div>
-		                <div>${currentPerson.bio}</div> 
-			              <footer>${currentPerson.lifespan.birth}${currentPerson.lifespan.death}</footer>
+		                <div class="bio">${currentPerson.bio}</div> 
+			              <footer>Birth: ${currentPerson.lifespan.birth}    Death: ${currentPerson.lifespan.death}</footer>
 			             </div>`;
   peopleContainer.innerHTML += newPerson;
  };
  
 var personCard = document.getElementsByClassName("personCard");
-function cardColor() {
+
   for(var i = 0; i < famousPeople.length; i++){
     if(i % 2 === 0) {
       personCard[i].classList.add("yellow");
     }else {
       personCard[i].classList.add("blue");
     }
-  }
-};
+    personCard[i].addEventListener("click", function(event) {
+      event.currentTarget.classList.add("dotted");
+    })
+    personCard[i].addEventListener("click", function() {
+      textInput.focus();
+    })
+  };
 
-cardColor(famousPeople);
+peopleContainer.addEventListener("click", function() {
+  console.log(event);
+})
 
-// peopleContainer.addEventListener("click", function(event) {
-  
-// })
+
+
+// textInput.onkeyup = function(event) {
+//   console.log(event);
+  // .innerHTML = textInput.value;
+// }
+
 
 
 
