@@ -43,6 +43,7 @@ var famousPeople = [
 
 var peopleContainer = document.getElementById('people-container');
 var textInput = document.getElementById('textInput');
+
 	
 for(var i = 0; i < famousPeople.length; i++) {
 	var currentPerson = famousPeople[i];
@@ -57,6 +58,7 @@ for(var i = 0; i < famousPeople.length; i++) {
  };
  
 var personCard = document.getElementsByClassName("personCard");
+var bio = document.getElementsByClassName("bio");
 
   for(var i = 0; i < famousPeople.length; i++){
     if(i % 2 === 0) {
@@ -70,23 +72,16 @@ var personCard = document.getElementsByClassName("personCard");
     personCard[i].addEventListener("click", function() {
       textInput.focus();
     })
+    bio[i].addEventListener("onkeyup", function() {
+      bio.innerHTML = textInput.value;
+    })
   };
 
-peopleContainer.addEventListener("click", function() {
-  console.log(event);
-})
 
-
-
-// textInput.onkeyup = function(event) {
-//   console.log(event);
-  // .innerHTML = textInput.value;
+// textInput.onkeyup = function() {
+//   var bio = document.getElementsByClassName("bio");
+//   bio.innerHTML = this.value;
 // }
-
-
-
-
-
 
 
 
