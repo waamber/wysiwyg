@@ -58,7 +58,6 @@ for(var i = 0; i < famousPeople.length; i++) {
  };
  
 var personCard = document.getElementsByClassName("personCard");
-var bio = document.getElementsByClassName("bio");
 
   for(var i = 0; i < famousPeople.length; i++){
     if(i % 2 === 0) {
@@ -72,18 +71,27 @@ var bio = document.getElementsByClassName("bio");
     personCard[i].addEventListener("click", function() {
       textInput.focus();
     })
-    bio[i].addEventListener("onkeyup", function() {
-      bio.innerHTML = textInput.value;
-    })
   };
 
 
-// textInput.onkeyup = function() {
-//   var bio = document.getElementsByClassName("bio");
-//   bio.innerHTML = this.value;
-// }
 
+// textInput.addEventListener("onkeyup", function() {
+//    console.log(event);
+//   var textInput = document.getElementById('textInput').value;
+//   personCard.innerHTML += textInput;
+// })
 
+textInput.onkeyup = function() {
+  var bio = document.getElementsByClassName("bio");
+  bio.innerHTML = this.value;
+}
+
+textInput.addEventListener("keypress", function(event) {
+  console.log(event);
+  if(event.keyCode === 13) {
+    textInput.value = "";
+  }
+})
 
 
 
