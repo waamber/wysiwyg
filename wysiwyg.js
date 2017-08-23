@@ -44,51 +44,54 @@ var famousPeople = [
 var peopleContainer = document.getElementById('people-container');
 var textInput = document.getElementById('textInput');
 
-	
-for(var i = 0; i < famousPeople.length; i++) {
+for(var i = 0; i < famousPeople.length; i++){
 	var currentPerson = famousPeople[i];
 	var newPerson = `<div class="personCard">
-			              <h1>${currentPerson.name}</h1>
-                    <h3>${currentPerson.title}</h3>
-                    <div><img src="${currentPerson.image}"></div>
-		                <div class="bio">${currentPerson.bio}</div> 
-			              <footer>Birth: ${currentPerson.lifespan.birth}    Death: ${currentPerson.lifespan.death}</footer>
+			              <h1 class="child">${currentPerson.name}</h1>
+                    <h3 class="child">${currentPerson.title}</h3>
+                    <div class="child"><img src="${currentPerson.image}"></div>
+		                <div class="bio child">${currentPerson.bio}</div> 
+			              <footer class="child">Birth: ${currentPerson.lifespan.birth}    Death: ${currentPerson.lifespan.death}</footer>
 			             </div>`;
   peopleContainer.innerHTML += newPerson;
  };
  
 var personCard = document.getElementsByClassName("personCard");
 
-  for(var i = 0; i < famousPeople.length; i++){
-    if(i % 2 === 0) {
-      personCard[i].classList.add("yellow");
-    }else {
-      personCard[i].classList.add("blue");
-    }
-    personCard[i].addEventListener("click", function(event) {
-      event.currentTarget.classList.add("dotted");
-    })
-    personCard[i].addEventListener("click", function() {
-      textInput.focus();
-    })
-  };
+for(var i = 0; i < famousPeople.length; i++){
+  if(i % 2 === 0) {
+    personCard[i].classList.add("yellow");
+  }else {
+    personCard[i].classList.add("blue");
+  }
+};
 
+var selectedCard;
 
+peopleContainer.addEventListener("click", function(){
+  textInput.focus();
+  addBorder(event);
+});
 
-// textInput.addEventListener("onkeyup", function() {
-//    console.log(event);
-//   var textInput = document.getElementById('textInput').value;
-//   personCard.innerHTML += textInput;
-// })
-
-textInput.onkeyup = function() {
-  var bio = document.getElementsByClassName("bio");
-  bio.innerHTML = this.value;
+function addBorder(event){
+  if(event.target.classList.contains("child")){
+    selectedCard = event.target.parentNode;
+  }else if(event.target.parentNode.parentNode.classList.contains("personCard")){
+    selectedCard = event.target.parentNode.parentNode;
+  }else if(event.target.classList.contains("personCard")){
+    selectedCard = event.target;
+  }
+  selectedCard.classList.add("dotted"); 
 }
 
-textInput.addEventListener("keypress", function(event) {
-  console.log(event);
-  if(event.keyCode === 13) {
+textInput.addEventListener("onkeyup", function(){
+  var text = document.getElementById('textInput').value;
+  var bio = selectedCard.childNodes[7].childNodes[0].innerHTML;
+  bio = text;
+});
+
+textInput.addEventListener("keypress", function(event){
+  if(event.keyCode === 13){
     textInput.value = "";
   }
 })
