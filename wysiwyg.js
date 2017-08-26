@@ -1,4 +1,5 @@
 var famousPeople = [
+
 {
   title: "Comedian",
   name: "Jerry Seinfeld",
@@ -44,6 +45,8 @@ var famousPeople = [
 var peopleContainer = document.getElementById('people-container');
 var personCard = document.getElementsByClassName("personCard");
 var textInput = document.getElementById('textInput');
+var selectedCard;
+var bio;
 
 for(var i = 0; i < famousPeople.length; i++){
 	var currentPerson = famousPeople[i];
@@ -57,8 +60,6 @@ for(var i = 0; i < famousPeople.length; i++){
   peopleContainer.innerHTML += newPerson;
  };
  
-
-
 for(var i = 0; i < famousPeople.length; i++){
   if(i % 2 === 0) {
     personCard[i].classList.add("yellow");
@@ -66,9 +67,6 @@ for(var i = 0; i < famousPeople.length; i++){
     personCard[i].classList.add("blue");
   }
 };
-
-var selectedCard;
-var bio;
 
 peopleContainer.addEventListener("click", function(){
   textInput.focus();
@@ -92,7 +90,7 @@ function addBorder(event){
   }else if(event.target.classList.contains("personCard")){
     selectedCard = event.target;
   }
-  selectedCard.classList.add("dotted");
+    selectedCard.classList.add("dotted");
 }
 
 textInput.addEventListener("keypress", function(e){
