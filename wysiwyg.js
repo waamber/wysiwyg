@@ -42,6 +42,7 @@ var famousPeople = [
 ];
 
 var peopleContainer = document.getElementById('people-container');
+var personCard = document.getElementsByClassName("personCard");
 var textInput = document.getElementById('textInput');
 
 for(var i = 0; i < famousPeople.length; i++){
@@ -56,7 +57,7 @@ for(var i = 0; i < famousPeople.length; i++){
   peopleContainer.innerHTML += newPerson;
  };
  
-var personCard = document.getElementsByClassName("personCard");
+
 
 for(var i = 0; i < famousPeople.length; i++){
   if(i % 2 === 0) {
@@ -67,10 +68,20 @@ for(var i = 0; i < famousPeople.length; i++){
 };
 
 var selectedCard;
+var bio;
 
 peopleContainer.addEventListener("click", function(){
   textInput.focus();
   addBorder(event);
+});
+
+textInput.addEventListener("focusout", function(){
+  for(var i = 0; i < personCard.length; i++){
+    if(personCard[i].classList.contains("dotted")){
+      personCard[i].classList.remove("dotted");
+      selectedCard = "";
+    }
+  }
 });
 
 function addBorder(event){
@@ -81,13 +92,17 @@ function addBorder(event){
   }else if(event.target.classList.contains("personCard")){
     selectedCard = event.target;
   }
-  selectedCard.classList.add("dotted"); 
+  selectedCard.classList.add("dotted");
 }
 
-textInput.addEventListener("onkeyup", function(){
+textInput.addEventListener("keypress", function(e){
   var text = document.getElementById('textInput').value;
-  var bio = selectedCard.childNodes[7].childNodes[0].innerHTML;
-  bio = text;
+  for(var i = 0; i < selectedCard.children.length; i++){
+    currentChild = selectedCard.children[i];
+    if(currentChild.classList.contains("bio")){
+    currentChild.innerHTML = text + e.key;
+  }
+}
 });
 
 textInput.addEventListener("keypress", function(event){
